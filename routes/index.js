@@ -65,13 +65,16 @@ async function deleteUser(req, res) {
     const user = await userSchema.findOneAndDelete({ _id: req.params.id });
     return res.json(user);
 }
-router.delete('/users/:id', deleteUser);
 
-//
+function getRootRoute(req,res){
+    res.send('Backend for workshop');
+}
+
+router.delete('/users/:id', deleteUser);
 
 // Exports all the routes
 module.exports = router;
-
+router.get('/', getRootRoute)
 router.get('/users, addUser');
 router.get(':/users/:id, updateUser');
 router.get(':/users/:id, getUserById');
